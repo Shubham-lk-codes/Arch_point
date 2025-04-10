@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import Footer from './Footer';
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -284,7 +285,9 @@ function Landing() {
             Swipe through our latest architectural and interior design projects
           </motion.p>
         </motion.div>
+        
       </div>
+     
     </div>
   );
 }
