@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -83,6 +84,16 @@ const Navbar = () => {
     }
   };
 
+  // Navigation items with their corresponding routes
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Projects", path: "/projects" },
+    { name: "Expertise", path: "/experties" },
+    { name: "News", path: "/news" },
+    { name: "About Us", path: "/about" },
+    { name: "Blog", path: "/blog" }
+  ];
+
   return (
     <motion.nav 
       ref={navbarRef}
@@ -92,7 +103,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0" ref={logoRef}>
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <motion.span 
                 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900"
                 whileHover={{ scale: 1.05 }}
@@ -113,41 +124,51 @@ const Navbar = () => {
                   Point
                 </motion.span>
               </motion.span>
-            </a>
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-10 items-center">
-            {["Projects", "Expertise", "News", "About Us"].map((item, i) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="text-base font-medium text-gray-700 hover:text-blue-700 transition duration-300"
-                variants={navItemVariants}
-                initial="hidden"
-                animate="visible"
-                custom={i}
-                whileHover={{ scale: 1.1, color: "#1d4ed8" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item}
-              </motion.a>
+            {navItems.map((item, i) => (
+              <motion.div key={item.name}>
+                <Link 
+                  to={item.path}
+                  className="text-base font-medium text-gray-700 hover:text-blue-700 transition duration-300"
+                >
+                  <motion.span
+                    variants={navItemVariants}
+                    initial="hidden"
+                    animate="visible"
+                    custom={i}
+                    whileHover={{ scale: 1.1, color: "#1d4ed8" }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {item.name}
+                  </motion.span>
+                </Link>
+              </motion.div>
             ))}
-            <motion.a
-              href="#contact"
-              className="bg-blue-700 text-white px-6 py-3 rounded-md text-base font-medium hover:bg-blue-800 transition duration-300 shadow-md"
+            <motion.div
               variants={navItemVariants}
               initial="hidden"
               animate="visible"
-              custom={4}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)"
-              }}
-              whileTap={{ scale: 0.95 }}
+              custom={navItems.length}
             >
-              Contact Us
-            </motion.a>
+              <Link
+                to="/contact"
+                className="bg-blue-700 text-white px-6 py-3 rounded-md text-base font-medium hover:bg-blue-800 transition duration-300 shadow-md"
+              >
+                <motion.span
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Contact Us
+                </motion.span>
+              </Link>
+            </motion.div>
           </div>
           
           {/* Mobile Menu Button */}
@@ -198,29 +219,37 @@ const Navbar = () => {
             exit="closed"
           >
             <div className="flex flex-col space-y-4 pt-2">
-              {["Projects", "Expertise", "News", "About Us"].map((item) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(" ", "-")}`}
-                  className="text-lg font-medium text-gray-700 hover:text-blue-700 transition duration-300 py-2 border-b border-gray-100"
-                  onClick={() => setIsMenuOpen(false)}
-                  variants={menuItemVariants}
-                  whileHover={{ x: 5, color: "#1d4ed8" }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {item}
-                </motion.a>
+              {navItems.map((item) => (
+                <motion.div key={item.name}>
+                  <Link
+                    to={item.path}
+                    className="text-lg font-medium text-gray-700 hover:text-blue-700 transition duration-300 py-2 border-b border-gray-100 block"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <motion.span
+                      variants={menuItemVariants}
+                      whileHover={{ x: 5, color: "#1d4ed8" }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {item.name}
+                    </motion.span>
+                  </Link>
+                </motion.div>
               ))}
-              <motion.a
-                href="#contact"
-                className="bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-800 transition duration-300 mt-2 text-center shadow-md"
-                onClick={() => setIsMenuOpen(false)}
-                variants={menuItemVariants}
-                whileHover={{ scale: 1.05, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Contact Us
-              </motion.a>
+              <motion.div variants={menuItemVariants}>
+                <Link
+                  to="/contact"
+                  className="bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-800 transition duration-300 mt-2 text-center shadow-md block"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <motion.span
+                    whileHover={{ scale: 1.05, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Contact Us
+                  </motion.span>
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}
