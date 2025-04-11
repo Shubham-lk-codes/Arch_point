@@ -127,7 +127,7 @@ function ProjectCard({ project }) {
     <div 
       ref={cardRef}
       onClick={handleClick}
-      className="bg-white rounded-lg overflow-hidden shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl"
+      className="bg-white  overflow-hidden shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl"
     >
       <div className="h-64 overflow-hidden">
         <img 
