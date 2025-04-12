@@ -9,13 +9,14 @@ import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
 import Project from "./components/Project";
-import LoadingScreen from "./components/LoadingScreen"; // Make sure this exists
+import LoadingScreen from "./components/LoadingScreen";
+import FloatingContactButtons from "./components/FloatingContactButtons"; // 👈 Import it
 
 export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2500); // 2.5 sec loader
+    const timer = setTimeout(() => setLoading(false), 2500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -36,6 +37,8 @@ export default function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/projects/:slug" element={<Project />} />
         </Routes>
+
+        <FloatingContactButtons /> {/* 👈 This is always visible */}
       </div>
     </BrowserRouter>
   );
