@@ -4,6 +4,7 @@ import Landing from '../components/Landing'
 import About from '../components/About'
 import Footer from '../components/Footer'
 
+
 function HomePage() {
   return (
     <div>
@@ -11,6 +12,7 @@ function HomePage() {
         <Landing />
         <About />
         <Footer />
+        
     </div>
   )
 }

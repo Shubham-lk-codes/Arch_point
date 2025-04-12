@@ -262,7 +262,7 @@ function About() {
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-800 font-sans">
+    <div className="w-full min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-800 ">
       {/* Hero Section */}
       <div
         ref={heroRef}
@@ -364,7 +364,7 @@ function About() {
 
         {/* Gallery Section */}
         <div ref={galleryRef} className="my-16 overflow-hidden">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  font-sans">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  ">
             Our Signature Projects
           </h2>
 
@@ -424,7 +424,7 @@ function About() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                     <div className="p-6 text-white">
-                      <h3 className="text-xl font-bold font-sans">
+                      <h3 className="text-xl font-bold ">
                         {project.title}
                       </h3>
                       <p className="text-sm mt-2 font-light">{project.desc}</p>
@@ -438,7 +438,7 @@ function About() {
 
         {/* Expertise Section */}
         <div ref={expertiseRef} className="my-24">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  font-sans">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  ">
             Our Expertise
           </h2>
 
@@ -479,7 +479,7 @@ function About() {
 
         {/* Team Section */}
         <div ref={teamRef} className="my-24">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  font-sans">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  ">
             Our Leadership Team
           </h2>
 
@@ -501,7 +501,7 @@ function About() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-bold text-xl text-blue-900 font-sans">
+                <h3 className="font-bold text-xl text-blue-900 ">
                   Pranav Kulkarni
                 </h3>
                 <p className="text-blue-600 text-sm font-medium mb-3">
@@ -531,7 +531,7 @@ function About() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="font-bold text-xl text-blue-900 font-sans">
+                <h3 className="font-bold text-xl text-blue-900 ">
                   Anika Sharma
                 </h3>
                 <p className="text-blue-600 text-sm font-medium mb-3">
@@ -556,7 +556,7 @@ function About() {
           }}
         >
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-sans">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 ">
               Ready to Transform Your Space?
             </h2>
             <p className="text-lg text-blue-100 mb-8 font-light leading-relaxed">

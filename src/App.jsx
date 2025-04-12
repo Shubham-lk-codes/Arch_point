@@ -6,6 +6,7 @@ import ExpertiesPage from "./pages/ExpertiesPage";
 import NewsPage from "./pages/NewsPage";
 import ContactPage from "./pages/ContactPage";
 import BlogPage from "./pages/BlogPage";
+import Project from "./components/Project";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/projects/:slug" element={<Project />} />
         </Routes>
       </div>
     </BrowserRouter>

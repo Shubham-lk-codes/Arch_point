@@ -4,8 +4,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowUpRight } from 'lucide-react';
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 // Project data
@@ -14,61 +14,60 @@ const projectsData = [
     id: 1,
     title: "Modern Skyline Tower",
     category: "Commercial Project",
-    image: "../img/1.jpg",
+    image: "img/1.jpg",
     slug: "modern-skyline-tower"
   },
   {
     id: 2,
     title: "Luxury Beach Resort",
     category: "Resort Project",
-    image: "../img/1.jpg",
+    image: "img/2.jpg",
     slug: "luxury-beach-resort"
   },
   {
     id: 3,
     title: "Urban Heights Residences",
     category: "Residential Project",
-    image: "../img/1.jpg",
+    image: "img/3.jpg",
     slug: "urban-heights-residences"
   },
   {
     id: 4,
     title: "Grand Central Hotel",
     category: "Hotel Project",
-    image: "../img/1.jpg",
+    image: "img/4.jpg",
     slug: "grand-central-hotel"
   },
   {
     id: 5,
     title: "Riverside Township",
     category: "Township",
-    image: "../img/1.jpg",
+    image: "img/5.jpg",
     slug: "riverside-township"
   },
   {
     id: 6,
     title: "Serenity Temple Complex",
     category: "Religious Projects",
-    image: "../img/1.jpg",
+    image: "img/6.jpg",
     slug: "serenity-temple-complex"
   },
   {
     id: 7,
     title: "Oasis Shopping Mall",
     category: "Commercial Project",
-    image: "../img/1.jpg",
+    image: "img/7.jpg",
     slug: "oasis-shopping-mall"
   },
   {
     id: 8,
     title: "Hillside Villa Community",
     category: "Residential Project",
-    image: "../img/1.jpg",
+    image: "img/8.jpg",
     slug: "hillside-villa-community"
   }
 ];
 
-// List of categories
 const categories = [
   "All",
   "Commercial Project",
@@ -82,13 +81,11 @@ const categories = [
 function ProjectCard({ project }) {
   const navigate = useNavigate();
   const cardRef = useRef(null);
-  
+
   useEffect(() => {
     const card = cardRef.current;
-    
     if (!card) return;
-    
-    // Create and store the hover animations to clean them up later
+
     const enterAnimation = () => {
       gsap.to(card, {
         y: -10,
@@ -97,7 +94,7 @@ function ProjectCard({ project }) {
         duration: 0.3
       });
     };
-    
+
     const leaveAnimation = () => {
       gsap.to(card, {
         y: 0,
@@ -106,41 +103,40 @@ function ProjectCard({ project }) {
         duration: 0.3
       });
     };
-    
-    // Hover animation
+
     card.addEventListener('mouseenter', enterAnimation);
     card.addEventListener('mouseleave', leaveAnimation);
-    
+
     return () => {
-      if (card) {
-        card.removeEventListener('mouseenter', enterAnimation);
-        card.removeEventListener('mouseleave', leaveAnimation);
-      }
+      card.removeEventListener('mouseenter', enterAnimation);
+      card.removeEventListener('mouseleave', leaveAnimation);
     };
   }, []);
-  
+
   const handleClick = () => {
     navigate(`/projects/${project.slug}`);
   };
-  
+
   return (
     <div 
       ref={cardRef}
       onClick={handleClick}
-      className="bg-white  overflow-hidden shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl"
+      className="relative bg-white overflow-hidden shadow-md cursor-pointer group transition-all duration-300 hover:shadow-xl"
     >
-      <div className="h-64 overflow-hidden">
+      <div className="h-80 overflow-hidden relative">
         <img 
-          src={project.image} 
+          src={`${import.meta.env.BASE_URL}${project.image}`} 
           alt={project.title} 
-          className="w-full h-full object-cover transition-all duration-700 hover:scale-110"
+          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
           onError={(e) => {
-            e.target.src = "../img/1.jpg"; // Fallback image
-            e.target.onerror = null; // Prevent infinite loop
+            e.target.src = `${import.meta.env.BASE_URL}img/1.jpg`;
+            e.target.onerror = null;
           }}
         />
+        <div className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+        <ArrowUpRight className="absolute bottom-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" size={44} />
       </div>
-      <div className="p-6">
+      <div className="p-6 z-30 relative">
         <h3 className="text-xl font-semibold text-gray-800 mb-2">{project.title}</h3>
         <p className="text-sm text-gray-600">{project.category}</p>
       </div>
@@ -156,8 +152,7 @@ function ProjectsPage() {
   const headerRef = useRef(null);
   const filtersRef = useRef(null);
   const animationsSetUpRef = useRef(false);
-  
-  // Filter projects when category changes
+
   useEffect(() => {
     if (activeCategory === "All") {
       setFilteredProjects(projectsData);
@@ -165,32 +160,26 @@ function ProjectsPage() {
       setFilteredProjects(projectsData.filter(project => project.category === activeCategory));
     }
   }, [activeCategory]);
-  
-  // Handle animations
+
   useEffect(() => {
-    // Set content as loaded
     setIsLoaded(true);
-    
-    // Prevent multiple animation setups
+
     if (animationsSetUpRef.current) return;
-    
+
     if (headerRef.current && filtersRef.current) {
-      // Header animation on page load - with reduced animation values
       gsap.fromTo(headerRef.current, 
         { y: -20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
       );
-      
-      // Category filters animation - with reduced animation values
+
       gsap.fromTo(filtersRef.current.children, 
         { y: 10, opacity: 0 },
         { y: 0, opacity: 1, stagger: 0.05, duration: 0.6, ease: "power1.out", delay: 0.2 }
       );
-      
+
       animationsSetUpRef.current = true;
     }
-    
-    // Clean up any animations on unmount
+
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
       gsap.killTweensOf(headerRef.current);
@@ -199,17 +188,14 @@ function ProjectsPage() {
       }
     };
   }, []);
-  
-  // Setup scroll animations after filtered projects have been rendered
+
   useEffect(() => {
     if (!projectsRef.current || !projectsRef.current.children.length) return;
 
-    // Clear any existing ScrollTrigger instances
     ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
-    
-    // Projects scroll animation with safer values
+
     const projectCards = Array.from(projectsRef.current.children);
-    
+
     projectCards.forEach((card, index) => {
       gsap.fromTo(card,
         { y: 20, opacity: 0 },
@@ -226,33 +212,26 @@ function ProjectsPage() {
         }
       );
     });
-    
+
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
     };
   }, [filteredProjects]);
-  
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Fixed navbar at the top */}
       <Navbar />
-      
-      {/* Main content with proper top padding to account for navbar */}
+
       <main className="flex-grow pt-32 pb-12 px-4" style={{ visibility: isLoaded ? 'visible' : 'hidden' }}>
         <div className="container mx-auto max-w-7xl">
-          {/* Header */}
           <div ref={headerRef} className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Featured Projects</h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Explore our diverse portfolio of architectural excellence across various sectors and styles.
             </p>
           </div>
-          
-          {/* Category filters */}
-          <div 
-            ref={filtersRef}
-            className="flex flex-wrap justify-center gap-2 mb-12"
-          >
+
+          <div ref={filtersRef} className="flex flex-wrap justify-center gap-2 mb-12">
             {categories.map((category, index) => (
               <button
                 key={index}
@@ -267,18 +246,13 @@ function ProjectsPage() {
               </button>
             ))}
           </div>
-          
-          {/* Projects grid */}
-          <div 
-            ref={projectsRef}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
+
+          <div ref={projectsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map(project => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>
-          
-          {/* Empty state */}
+
           {filteredProjects.length === 0 && (
             <div className="text-center py-16">
               <h3 className="text-xl text-gray-600">No projects found in this category.</h3>
@@ -286,7 +260,7 @@ function ProjectsPage() {
           )}
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

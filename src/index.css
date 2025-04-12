@@ -16,3 +16,7 @@
     animation: scroll-faster 30s linear infinite;
   }
 }
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
