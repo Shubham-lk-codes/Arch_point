@@ -153,24 +153,17 @@ function Landing() {
 
   return (
     <div>
-      {/* <div className="w-screen h-screen overflow-hidden overflow-x-hidden">
-  <video
-    className="w-full h-full object-cover"
-    src="../videos/your-video.mp4"
-    autoPlay
-    muted
-    loop
-    playsInline
-  />
-</div> */}
+      <div className="w-screen h-screen overflow-hidden overflow-x-hidden mt-20">
+        <video
+          className="w-full h-full object-cover"
+          src="../vid/vid.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      </div>
 
-<div className="w-screen h-screen overflow-hidden overflow-x-hidden">
-  <img
-    src="../img/5.jpg"
-    alt="Preview"
-    className="w-full h-full object-cover"
-  />
-</div>
 
 
       <div
