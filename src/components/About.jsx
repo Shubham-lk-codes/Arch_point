@@ -281,7 +281,7 @@ function About() {
 
           {/* Text fades in on hover only on md+ screens */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 ease-in-out">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center leading-tight font-serif">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center leading-tight ">
               About Arch Point
             </h1>
             <div className="h-1 w-24 bg-blue-400 my-6 divider"></div>
@@ -300,7 +300,7 @@ function About() {
           className="flex flex-col lg:flex-row gap-12 items-start mb-24"
         >
           <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-900 font-serif animate-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-900  animate-in">
               Our Story
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-6 font-light animate-in">
@@ -351,7 +351,7 @@ function About() {
                 className="w-full h-80 object-cover"
               />
               <div className="p-6">
-                <h3 className="font-serif font-semibold text-xl text-blue-900 mb-2">
+                <h3 className=" font-semibold text-xl text-blue-900 mb-2">
                   Arch Point Consultants Pvt. Ltd.
                 </h3>
                 <p className="text-gray-600 font-light">
@@ -549,7 +549,7 @@ function About() {
         {/* Call to Action */}
         <motion.div
           ref={ctaRef}
-          className="my-16 bg-blue-900 text-white rounded-2xl p-8 md:p-12 shadow-xl"
+          className="my-16 bg-yellow-300 text-black  p-8 md:p-12 shadow-xl"
           whileHover={{
             boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.15)",
             transition: { duration: 0.5 },
@@ -559,7 +559,7 @@ function About() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6 ">
               Ready to Transform Your Space?
             </h2>
-            <p className="text-lg text-blue-100 mb-8 font-light leading-relaxed">
+            <p className="text-lg text-black mb-8 font-light leading-relaxed">
               Let's collaborate to bring your architectural vision to life. Our
               team is ready to guide you through every step of the journey.
             </p>
@@ -574,7 +574,7 @@ function About() {
               Schedule a Consultation
             </motion.button>
           </div>
-        </motion.div>
+        </motion.div> 
       </div>
     </div>
   );

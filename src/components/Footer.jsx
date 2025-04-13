@@ -138,11 +138,11 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row gap-8">
             <div className="flex items-center gap-2 text-gray-300">
               <Phone size={16} className="text-gray-400" />
-              <span className="text-sm">+44 1234 567890</span>
+              <span className="text-sm">+91-9982507555</span>
             </div>
             <div className="flex items-center gap-2 text-gray-300">
               <Mail size={16} className="text-gray-400" />
-              <span className="text-sm">contact@archi-build.com</span>
+              <span className="text-sm">contactarchpoint@gmail.com</span>
             </div>
           </div>
 

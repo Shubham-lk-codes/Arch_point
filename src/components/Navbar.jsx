@@ -133,7 +133,7 @@ const Navbar = () => {
               <motion.div key={item.name}>
                 <Link 
                   to={item.path}
-                  className="text-base font-medium text-gray-700 hover:text-blue-700 transition duration-300"
+                  className="text-base font-semibold text-gray-700 hover:text-blue-700 transition duration-300"
                 >
                   <motion.span
                     variants={navItemVariants}
@@ -156,7 +156,7 @@ const Navbar = () => {
             >
               <Link
                 to="/contact"
-                className="bg-blue-700 text-white px-6 py-3 rounded-md text-base font-medium hover:bg-blue-800 transition duration-300 shadow-md"
+                className=" text-black px-6 py-3  text-base font-semibold  transition duration-300 "
               >
                 <motion.span
                   whileHover={{ 

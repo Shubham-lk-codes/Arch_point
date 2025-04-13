@@ -164,8 +164,6 @@ function Landing() {
         />
       </div>
 
-
-
       <div
         ref={landingRef}
         className="flex flex-col md:flex-row justify-between items-center min-h-screen px-4 md:px-8 py-20"
@@ -219,10 +217,10 @@ function Landing() {
         {/* Right image slider section */}
         <div
           ref={sliderRef}
-          className="p-4 rounded-lg w-full md:w-1/2 h-full relative mt-10 md:mt-0"
+          className="p-4  w-full md:w-1/2 h-full relative mt-10 md:mt-0"
         >
           <motion.div
-            className="relative h-64 md:h-96 overflow-hidden rounded-lg shadow-xl"
+            className="relative h-64 md:h-96 overflow-hidden  "
             whileInView={{ boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
             transition={{ duration: 0.5 }}
           >
