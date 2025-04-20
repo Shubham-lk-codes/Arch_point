@@ -153,16 +153,18 @@ function Landing() {
 
   return (
     <div>
-      <div className="w-screen h-screen overflow-hidden overflow-x-hidden mt-20">
-        <video
-          className="w-full h-full object-cover"
-          src="../vid/vid.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-      </div>
+<div className="w-full  sm:h-[40vh] md:h-[50vh] lg:h-[85vh] mt-24 overflow-hidden px-4 sm:px-8 md:px-16 lg:px-24">
+  <video
+    className="w-full h-full object-cover"
+    src="/vid/vid.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+  />
+</div>
+
+
 
       <div
         ref={landingRef}

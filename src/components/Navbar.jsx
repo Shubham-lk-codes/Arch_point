@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +27,13 @@ const Navbar = () => {
     gsap.fromTo(
       logo,
       { scale: 0.5, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 1.2, delay: 0.3, ease: "elastic.out(1, 0.5)" }
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 1.2,
+        delay: 0.3,
+        ease: "elastic.out(1, 0.5)",
+      }
     );
   }, []);
 
@@ -40,9 +46,9 @@ const Navbar = () => {
       transition: {
         delay: 0.3 + i * 0.1,
         duration: 0.5,
-        ease: "easeOut"
-      }
-    })
+        ease: "easeOut",
+      },
+    }),
   };
 
   // Mobile menu variants for Framer Motion
@@ -55,8 +61,8 @@ const Navbar = () => {
         ease: "easeInOut",
         when: "afterChildren",
         staggerChildren: 0.05,
-        staggerDirection: -1
-      }
+        staggerDirection: -1,
+      },
     },
     open: {
       opacity: 1,
@@ -66,22 +72,22 @@ const Navbar = () => {
         ease: "easeInOut",
         when: "beforeChildren",
         staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const menuItemVariants = {
     closed: {
       opacity: 0,
       x: -20,
-      transition: { duration: 0.2 }
+      transition: { duration: 0.2 },
     },
     open: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.4, ease: "easeOut" }
-    }
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
   };
 
   // Navigation items with their corresponding routes
@@ -91,11 +97,11 @@ const Navbar = () => {
     { name: "Expertise", path: "/experties" },
     { name: "News", path: "/news" },
     { name: "About Us", path: "/about" },
-    { name: "Blog", path: "/blog" }
+    { name: "Blog", path: "/blog" },
   ];
 
   return (
-    <motion.nav 
+    <motion.nav
       ref={navbarRef}
       className="w-full bg-white shadow-lg fixed top-0 left-0 z-50"
     >
@@ -104,34 +110,21 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0" ref={logoRef}>
             <Link to="/" className="flex items-center">
-              <motion.span 
-                className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Arch
-                <motion.span 
-                  className="text-blue-700"
-                  animate={{ 
-                    color: ["#1d4ed8", "#3b82f6", "#1e40af", "#1d4ed8"],
-                  }}
-                  transition={{ 
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  Point
-                </motion.span>
-              </motion.span>
+              <div className="w-32 h-auto">
+                <img
+                  src="/img/logo.jpg"
+                  alt="Logo"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
             </Link>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-10 items-center">
             {navItems.map((item, i) => (
               <motion.div key={item.name}>
-                <Link 
+                <Link
                   to={item.path}
                   className="text-base font-semibold text-gray-700 hover:text-blue-700 transition duration-300"
                 >
@@ -159,9 +152,9 @@ const Navbar = () => {
                 className=" text-black px-6 py-3  text-base font-semibold  transition duration-300 "
               >
                 <motion.span
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.05,
-                    boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)"
+                    boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)",
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -170,7 +163,7 @@ const Navbar = () => {
               </Link>
             </motion.div>
           </div>
-          
+
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <motion.button
@@ -207,7 +200,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
@@ -243,7 +236,10 @@ const Navbar = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <motion.span
-                    whileHover={{ scale: 1.05, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" }}
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)",
+                    }}
                     whileTap={{ scale: 0.95 }}
                   >
                     Contact Us
