@@ -126,7 +126,7 @@ const Navbar = () => {
               <motion.div key={item.name}>
                 <Link
                   to={item.path}
-                  className="text-base font-semibold text-gray-700 hover:text-blue-700 transition duration-300"
+                  className="text-base font-semibold text-gray-700 hover:text-yellow-400 transition duration-300"
                 >
                   <motion.span
                     variants={navItemVariants}
@@ -168,7 +168,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <motion.button
               onClick={toggleMenu}
-              className="text-gray-700 hover:text-blue-700 focus:outline-none"
+              className="text-gray-700  hover:text-yellow-400 focus:outline-none"
               aria-label="Toggle menu"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9, rotate: 180 }}
@@ -216,7 +216,7 @@ const Navbar = () => {
                 <motion.div key={item.name}>
                   <Link
                     to={item.path}
-                    className="text-lg font-medium text-gray-700 hover:text-blue-700 transition duration-300 py-2 border-b border-gray-100 block"
+                    className="text-lg font-medium text-gray-700  hover:text-yellow-400 transition duration-300 py-2 border-b border-gray-100 block"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <motion.span
@@ -232,7 +232,7 @@ const Navbar = () => {
               <motion.div variants={menuItemVariants}>
                 <Link
                   to="/contact"
-                  className="bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-blue-800 transition duration-300 mt-2 text-center shadow-md block"
+                  className="bg-blue-700 text-white px-6 py-3 rounded-md text-lg font-medium  hover:text-yellow-400 transition duration-300 mt-2 text-center shadow-md block"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <motion.span

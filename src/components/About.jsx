@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -254,12 +255,15 @@ function About() {
         },
       }
     );
+    
 
     // Clean up ScrollTrigger instances
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+  const navigate = useNavigate();
+
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-800 ">
@@ -284,7 +288,7 @@ function About() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-center leading-tight ">
               About Arch Point
             </h1>
-            <div className="h-1 w-24 bg-blue-400 my-6 divider"></div>
+            <div className="h-1 w-24 bg-yellow-400 my-6 divider"></div>
             <p className="text-lg md:text-xl max-w-2xl text-center font-light">
               Creating exceptional architectural experiences since 2005
             </p>
@@ -300,7 +304,7 @@ function About() {
           className="flex flex-col lg:flex-row gap-12 items-start mb-24"
         >
           <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-900  animate-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-yellow-400  animate-in">
               Our Story
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-6 font-light animate-in">
@@ -319,7 +323,7 @@ function About() {
 
             <div className="flex gap-4 animate-in">
               <motion.button
-                className="bg-blue-700 hover:bg-blue-800 text-white font-medium px-6 py-3 rounded-md shadow-md transition duration-300 flex items-center gap-2"
+                className="bg-yellow-400 hover:bg-yellow-500 text-white font-medium px-6 py-3 rounded-md shadow-md transition duration-300 flex items-center gap-2"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)",
@@ -330,7 +334,7 @@ function About() {
                 <ArrowRight size={16} />
               </motion.button>
               <motion.button
-                className="bg-transparent border-2 border-blue-700 text-blue-700 hover:bg-blue-50 font-medium px-6 py-3 rounded-md transition duration-300"
+                className="bg-transparent border-2 border-yellow-300 text-yellow-400 hover:bg-blue-50 font-medium px-6 py-3 rounded-md transition duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -351,7 +355,7 @@ function About() {
                 className="w-full h-80 object-cover"
               />
               <div className="p-6">
-                <h3 className=" font-semibold text-xl text-blue-900 mb-2">
+                <h3 className=" font-semibold text-xl text-yellow-400 mb-2">
                   Arch Point Consultants Pvt. Ltd.
                 </h3>
                 <p className="text-gray-600 font-light">
@@ -364,7 +368,7 @@ function About() {
 
         {/* Gallery Section */}
         <div ref={galleryRef} className="my-16 overflow-hidden">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  ">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-yellow-400  ">
             Our Signature Projects
           </h2>
 
@@ -424,9 +428,7 @@ function About() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                     <div className="p-6 text-white">
-                      <h3 className="text-xl font-bold ">
-                        {project.title}
-                      </h3>
+                      <h3 className="text-xl font-bold ">{project.title}</h3>
                       <p className="text-sm mt-2 font-light">{project.desc}</p>
                     </div>
                   </div>
@@ -437,109 +439,138 @@ function About() {
         </div>
 
         {/* Expertise Section */}
+  
+
         <div ref={expertiseRef} className="my-24">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  ">
-            Our Expertise
-          </h2>
+  <h2 className="text-3xl md:text-4xl font-bold mb-12 text-yellow-400">
+    Our Expertise
+  </h2>
 
-          <div className="flex-1  py-10 pt-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
-              {imageData.map((item, index) => (
-                <div key={index} className="relative group overflow-hidden">
-                  {/* Image */}
-                  <img
-                    src={item.imgSrc}
-                    alt={item.title}
-                    className="w-full h-[50vh] object-cover transform transition-all duration-500 group-hover:scale-110 group-hover:blur-sm group-hover:brightness-75"
-                  />
+  <div className="flex-1 py-10 pt-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
+      {imageData.map((item, index) => (
+        <div
+          key={index}
+          className="relative group overflow-hidden cursor-pointer"
+          onClick={() => navigate("/projects")}
+        >
+          {/* Image */}
+          <img
+            src={item.imgSrc}
+            alt={item.title}
+            className="w-full h-[50vh] object-cover transform transition-all duration-500 group-hover:scale-110 group-hover:blur-sm group-hover:brightness-75"
+          />
 
-                  {/* Overlay tint */}
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-500" />
+          {/* Overlay tint */}
+          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-500" />
 
-                  {/* Always-visible title (top-left) */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <h2 className="text-white text-4xl font-semibold px-3 py-1 rounded-md">
-                      {item.title}
-                    </h2>
-                  </div>
+          {/* Always-visible title (top-left) */}
+          <div className="absolute top-4 left-4 z-10">
+            <h2 className="text-white text-4xl font-semibold px-3 py-1 rounded-md">
+              {item.title}
+            </h2>
+          </div>
 
-                  {/* Hover-visible subtitles (below title) */}
-                  <div className="absolute top-20 left-4 z-10 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <ul className="text-white text-sm space-y-1 px-3 py-2 rounded-md">
-                      {item.subtitles.map((sub, idx) => (
-                        <li key={idx}>{sub}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+          {/* Hover-visible subtitles (below title) */}
+          <div className="absolute top-20 left-4 z-10 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <ul className="text-white text-sm space-y-1 px-3 py-2 rounded-md">
+              {item.subtitles.map((sub, idx) => (
+                <li key={idx}>{sub}</li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
+      ))}
+    </div>
+  </div>
+</div>
 
         {/* Team Section */}
-        <div ref={teamRef} className="my-24">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-blue-900  ">
+        <div ref={teamRef} className="my-24  sm:px-6 ">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-yellow-400 ">
             Our Leadership Team
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          <div className="space-y-12 max-w-7xl mx-auto">
             {/* Team Member 1 */}
             <motion.div
-              className="bg-white overflow-hidden shadow-md text-center group team-member"
+              className="flex flex-col md:flex-row bg-white overflow-hidden group"
               whileHover={{
                 y: -10,
                 boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.15)",
                 transition: { duration: 0.3 },
               }}
             >
-              <div className="h-[400px] overflow-hidden">
+              <div className="w-full md:w-1/2 h-[300px] md:h-[400px]">
                 <img
                   src="../img/p.jpg"
-                  alt="Team member 1"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  alt="Pranav Kulkarni"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="font-bold text-xl text-blue-900 ">
-                  Pranav Kulkarni
+              <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
+                <h3 className="font-bold text-2xl text-yellow-400">
+                  Ar. Poonam Jain
                 </h3>
                 <p className="text-blue-600 text-sm font-medium mb-3">
                   Chief Architect
                 </p>
                 <p className="text-gray-600 text-sm font-light">
-                  Leading sustainable design innovation with over 18 years of
-                  experience.
+                  Raising the flag of women entrepreneurship, Ar. Poonam Jain is
+                  making remarkable strides in the field of architecture and
+                  design. With an extraordinary vision and relentless
+                  dedication, she co-founded Arch Point Consultants Pvt. Ltd.
+                  alongside his soulmate. With 18 + years of experience as a
+                  passionate architect, she seamlessly balances her role as an
+                  entrepreneur and Director of Arch Point Consultants Pvt. Ltd.
+                  Beyond her professional achievements, she embraces an
+                  integrated approach to life, drawing wisdom from Heartfulness
+                  Organization.
                 </p>
               </div>
             </motion.div>
 
             {/* Team Member 2 */}
             <motion.div
-              className="bg-white overflow-hidden shadow-md text-center group team-member"
+              className="flex flex-col md:flex-row bg-white shadow-md overflow-hidden group"
               whileHover={{
                 y: -10,
                 boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.15)",
                 transition: { duration: 0.3 },
               }}
             >
-              <div className="h-[400px] overflow-hidden">
+              <div className="w-full md:w-1/2 h-[300px] md:h-[400px]">
                 <img
                   src="../img/a.jpg"
-                  alt="Team member 2"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  alt="Anika Sharma"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="font-bold text-xl text-blue-900 ">
-                  Anika Sharma
+              <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
+                <h3 className="font-bold text-2xl text-yellow-400">
+                  AMIT KHANDELWAL
                 </h3>
                 <p className="text-blue-600 text-sm font-medium mb-3">
                   Design Director
                 </p>
                 <p className="text-gray-600 text-sm font-light">
-                  Expert in high-performance buildings with a passion for modern
-                  design.
+                  Ar. Amit Khandelwal, professionally Architect, author of the
+                  book Creativity: “God’s gift for excellence” and Introspection
+                  Diary for Self development is Director at Arch Point
+                  Consultants Pvt Ltd.He is a strong believer of collaborative
+                  approach and always works in synergy with his clients,
+                  business partners, associates and his team members to bring
+                  out mutually beneficial and innovative results. He is
+                  developing expertise in Quantum Architecture and Aura Science
+                  that involve build living spaces that optimise energy levels
+                  of people staying in them. Amit Khandelwal is a rising star in
+                  the area of creativity and inspired architecture. He is a
+                  multi-dimensional personality and awarded by many
+                  institutions. He is a man with vision having result oriented
+                  approach. He is passionate about reaching out the world with
+                  his innovative, path breaking ideas. He is a disciple of Shri
+                  Kamlesh D. Patel (affectionately known as Daaji) global guide
+                  of Heartfulness Institute
                 </p>
               </div>
             </motion.div>
@@ -574,7 +605,7 @@ function About() {
               Schedule a Consultation
             </motion.button>
           </div>
-        </motion.div> 
+        </motion.div>
       </div>
     </div>
   );

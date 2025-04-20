@@ -178,7 +178,7 @@ function Landing() {
           <div className="max-w-lg mx-auto">
             <motion.h1
               ref={headingRef}
-              className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-600"
+              className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500"
               whileInView={{
                 textShadow: [
                   "0px 0px 0px rgba(0,0,0,0)",
@@ -204,7 +204,7 @@ function Landing() {
 
             <motion.button
               ref={buttonRef}
-              className="mt-8 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-md shadow-md transition duration-300"
+              className="mt-8 bg-yellow-300  hover:text-yellow-400 text-black py-3 px-6 rounded-md shadow-md transition duration-300"
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)",
@@ -299,7 +299,7 @@ function Landing() {
 
           <motion.div ref={sliderTextRef} className="mt-6 text-center">
             <motion.h2
-              className="text-2xl font-semibold text-blue-700"
+              className="text-2xl font-semibold text-yellow-400"
               whileInView={{ y: [0, -5, 0] }}
               transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
             >
