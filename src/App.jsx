@@ -11,6 +11,7 @@ import BlogPage from "./pages/BlogPage";
 import Project from "./components/Project";
 import LoadingScreen from "./components/LoadingScreen";
 import FloatingContactButtons from "./components/FloatingContactButtons"; // 👈 Import it
+import CareerPage from "./pages/CareerPage";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/career" element={<CareerPage />} />
           <Route path="/projects/:slug" element={<Project />} />
         </Routes>
 
